@@ -1,0 +1,3 @@
+# Mockaroo.com is a site fro creating dummy texts 
+# look up queryset API on google to get all the list of queries you can make
+# look up django database functions to help with exploring more funtions 
