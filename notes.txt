@@ -1,3 +1,18 @@
 # Mockaroo.com is a site fro creating dummy texts 
 # look up queryset API on google to get all the list of queries you can make
-# look up django database functions to help with exploring more funtions 
+# look up django database functions to help with exploring more funtions
+# To create a new user -> python manage.py createsuperuser
+# to change password -> python manage.py changepassword admin(being the username)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ["title"]
+
+
+admin.site.site_header = 'Store Admin'
+admin.site.index_title = 'Admin'
+
+# django modeladmin to help the complete list of customizable changes we can make
+# django validators for built-in validators
