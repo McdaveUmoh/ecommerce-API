@@ -83,10 +83,10 @@ def say_hello(request):
     #     item.unit_price = 10
     #     item.save()
 
-    # queryset = Products.objects.raw('SELECT * FROM store_products')
-    # with connection.cursor() as cursor:
-    #     cursor.execute('SELECT title FROM store_products')
-    #     cursor.callproc('get_customer', [1,3,6])
+    queryset = Products.objects.raw('SELECT * FROM store_products')
+    with connection.cursor() as cursor:
+        cursor.execute('SELECT title FROM store_products')
+        cursor.callproc('get_customer', [1,3,6])
 
 
 

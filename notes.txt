@@ -1,4 +1,4 @@
-# Mockaroo.com is a site fro creating dummy texts 
+# Mockaroo.com is a site for creating dummy texts
 # look up queryset API on google to get all the list of queries you can make
 # look up django database functions to help with exploring more funtions
 # To create a new user -> python manage.py createsuperuser
@@ -14,5 +14,18 @@
 admin.site.site_header = 'Store Admin'
 admin.site.index_title = 'Admin'
 
+#pipenv install to install dependencies in the project
 # django modeladmin to help the complete list of customizable changes we can make
 # django validators for built-in validators
+#RESTFUL is short for Representational State Transfer what basically makes an application restful
+ are RESOURCES, REPRESENTATIONS, HTTP METHODS
+# pipenv install djangorestframework then include it in your INSTALLED_APPS
+# pipenv shell to run the virtual environment
+#  . /home/mcdave/Codes/django\ projects/ecommerce-API-master/ecommerce-api/bin/activate
+# django comes with HttpResponse and HttpRequest while djangorestframework comes with Request and Response
+# ModelSerializers
+# httpstatuses.com
+# django-rest-framework.org
+# a generic view is a concrete class that combines one or more mixin and provides handler methods  like get and post
+# drf-nested-routers on github
+# pipenv install drf-nested-routers
