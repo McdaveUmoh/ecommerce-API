@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'rest_framework',
     'playground',
     'debug_toolbar',
-    'rest_framework',
     'likes',
     'tags',
     'store',
-    'store_custom'
+    'core'
 ]
 
 MIDDLEWARE = [ 
@@ -141,3 +142,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False
 }
+
+#to set our user table to the one we created
+AUTH_USER_MODEL = 'core.User'

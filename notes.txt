@@ -28,4 +28,18 @@ admin.site.index_title = 'Admin'
 # django-rest-framework.org
 # a generic view is a concrete class that combines one or more mixin and provides handler methods  like get and post
 # drf-nested-routers on github
-# pipenv install drf-nested-routers
+# pipenv install drf-nested-routers this for embedding routers in other routes with parameters
+# kwargs is dictionary that contains our url parameters
+# pipenv install django-filter for generic filtering instead of customizing multiple filterings
+# after installing a library always add it to your INSTALLED_APPS
+# ensure to always create a new user table when starting out your project to avoid dropping your entire DB
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'storefront',
+        'USERNAME': 'mcdave',
+        'HOST': 'localhost',
+        'PASSWORD': 'umoh@199629'
+    }
+}

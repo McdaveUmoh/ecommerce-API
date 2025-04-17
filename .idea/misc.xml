@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.12 (ecommerce-API-master)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (ecommerce-API-master)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 virtualenv at ~/Codes/django projects/ecommerce-API-master/ecommerce-api" project-jdk-type="Python SDK" />
 </project>
