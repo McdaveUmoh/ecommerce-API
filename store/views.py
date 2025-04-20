@@ -1,6 +1,8 @@
+from pickle import FALSE
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.views import APIView
 from django.core.serializers import serialize
@@ -9,14 +11,15 @@ from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Count
 from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
+from rest_framework.decorators import api_view, action
 from rest_framework import status
-from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin, DestroyModelMixin
+from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin, DestroyModelMixin, UpdateModelMixin
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .ProductFilter import ProductFilters
-from .models import Products, Collection, OrderItem, Review, Cart, CartItem
+from .models import Products, Collection, OrderItem, Review, Cart, CartItem, Customer
 from .pagination import DefaultPagination
 from .serializers import ProductSerializer, CollectionSerializer, ReviewSerializer, CartSerializer, CartItemSerializer, \
-    AddCartItemSerialzer, UpdateCartItemSerializer
+    AddCartItemSerialzer, UpdateCartItemSerializer, CustomerSerializer
 
 
 class ProductViewSet(ModelViewSet):
@@ -91,6 +94,23 @@ class CartItemViewSet(ModelViewSet):
         return CartItem.objects \
             .filter(cart_id= self.kwargs['cart_pk']) \
             .select_related('product')
+
+class CustomerViewSet(ModelViewSet):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+    @action(detail=False, methods=['GET', 'PUT'])
+    def me(self, request):
+        (customer, created) = Customer.objects.get_or_create(
+            user_id=request.user.id)
+        if request.method == 'GET':
+            serializer = CustomerSerializer(customer)
+            return Response(serializer.data)
+        elif request.method == 'PUT':
+            serializer = CustomerSerializer(customer, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)
 
     # def delete(self, request, pk):
     #     collection = get_object_or_404(Collection, pk=pk)

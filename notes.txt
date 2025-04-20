@@ -33,6 +33,14 @@ admin.site.index_title = 'Admin'
 # pipenv install django-filter for generic filtering instead of customizing multiple filterings
 # after installing a library always add it to your INSTALLED_APPS
 # ensure to always create a new user table when starting out your project to avoid dropping your entire DB
+# djoser is the restful implementation of django auth system
+#token-based auth validates token against DB on every request vs JSON Web token auth uses digital signature on the server to validate tokens
+# store token: add Authorization in the first column then JWT followed by the token in the next
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzM0ODE1LCJpYXQiOjE3NDQ5MDI4MTUsImp0aSI6IjgyZmRkNjgxNzM5NDQyYzQ5NWExMDY4YzE5ZDVkNmMyIiwidXNlcl9pZCI6NH0.qVj--eKCaDXiuF_-KxiGW6jd_7sg_wWgZE2lCSiADsg
+#staff Smith
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTk2NDE0LCJpYXQiOjE3NDUxNjQ0MTQsImp0aSI6ImNmODkyYzBlOTQxZjQzNmI5NTIzZTE2ZTkzZWUzY2QyIiwidXNlcl9pZCI6Mn0.Q2WYAXTg3mqxb8Vv-DR2ZV2AjzAinBXkvwgccLh5z38
+#jwt.io to validate  web tokens for django
+#4:21:56
 
 DATABASES = {
     'default': {
