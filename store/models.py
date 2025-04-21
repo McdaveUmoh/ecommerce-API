@@ -9,6 +9,11 @@ class Promotion(models.Model):
     description = models.CharField(max_length=255)
     discount = models.FloatField()
 
+    class Meta:
+        permissions = [
+            ('cancel_promotion', 'can cancel promotion')
+        ]
+
     def __str__(self):
         return self.description
 
@@ -64,6 +69,9 @@ class Customer(models.Model):
 
     class Meta:
         ordering = ['user__last_name', 'user__first_name']
+        permissions = [
+            ('view_history', 'can view history')
+        ]
 
 class Order(models.Model):
     STATUS_PENDING = 'P'
@@ -96,7 +104,7 @@ class Address(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
 class OrderItem(models.Model):
-    order = models.ForeignKey('Order', on_delete=models.PROTECT)
+    order = models.ForeignKey('Order', on_delete=models.PROTECT, related_name='items')
     product = models.ForeignKey(Products, on_delete=models.PROTECT, related_name='orderitems')
     quantity = models.PositiveSmallIntegerField()
     
