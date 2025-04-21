@@ -9,6 +9,7 @@ django-filter = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
 social-auth-app-django = "*"
+pillow = "*"
 
 [dev-packages]
 

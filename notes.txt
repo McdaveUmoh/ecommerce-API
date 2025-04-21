@@ -42,7 +42,9 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ
 #jwt.io to validate  web tokens for django
 #always create groups add users to groups so you can easily keep track of who has what permissions
 #transactions in Django to treat a bunch of actions as atomic where they all run or dont prevent data loss in the process
-#4:21:56
+#when your overwrite the get query method on a viewset you have to set a basename in the routers url
+#when including another serializer to a serialzer ensure you indicate if the many is true or not base on how you described your relationship in the database
+#23:16
 
 DATABASES = {
     'default': {

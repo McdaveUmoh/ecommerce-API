@@ -48,6 +48,11 @@ class Products(models.Model):
     class Meta:
         ordering = ['title']
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(
+          Products, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='store/images')
+
 class Customer(models.Model):
     BRONZE_MEMBERSHIP = 'B'
     SILVER_MEMBERSHIP = 'S'
