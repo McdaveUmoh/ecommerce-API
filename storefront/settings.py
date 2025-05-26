@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os.path
 from datetime import timedelta
 from pathlib import Path
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -159,6 +160,7 @@ REST_FRAMEWORK = {
 #to set our user table to the one we created
 AUTH_USER_MODEL = 'core.User'
 
+#setting up serializers for reading our models
 DJOSER = {
     'SERIALIZERS': {
         'user_create': 'core.serializers.UserCreateSerializer',
@@ -166,7 +168,30 @@ DJOSER = {
     }
 }
 
+#setting up the jwt tokens for users access
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
     'ACCESS_TOKEN_LIFETIME': timedelta(days=5)
+}
+
+#setting up the email backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 2525
+DEFAULT_FROM_EMAIL = 'info@davebuy.ng'
+
+#setting up the mails for the admins
+ADMINS = [
+    ('Umoh', 'admin@davebuy.com')
+]
+
+CELERY_BROKER_URL = 'redis://localhost:6380/1'
+CELERY_BEAT_SCHEDULE = {
+    'notify_customers': {
+        'task': 'playground.tasks.notify_customers',
+        'schedule': 5, #which will run for 5 seconds or we can do this crontab(day_of_week=1, hour=7, minute=30)
+        'args': ['Hello World'],
+    }
 }

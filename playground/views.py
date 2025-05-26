@@ -1,3 +1,4 @@
+from pyexpat.errors import messages
 from django.shortcuts import render
 from django.db import transaction, connection
 from django.contrib.contenttypes.models import ContentType
@@ -8,7 +9,13 @@ from django.db.models.functions import Concat
 from django.db.models.aggregates import Count, Max, Min, Avg, Sum
 from store.models import Products, OrderItem, Customer, Collection, Order
 from tags.models import TaggedItems
+from django.core.mail import send_mail, mail_admins, BadHeaderError
+from django.core.mail import EmailMessage, BadHeaderError
+from templated_mail.mail  import BaseEmailMessage
+from .tasks import notify_customers
+
 # Create your views here.
+
 
 # @transaction.atomic()
 def say_hello(request):
@@ -83,12 +90,31 @@ def say_hello(request):
     #     item.unit_price = 10
     #     item.save()
 
-    queryset = Products.objects.raw('SELECT * FROM store_products')
-    with connection.cursor() as cursor:
-        cursor.execute('SELECT title FROM store_products')
-        cursor.callproc('get_customer', [1,3,6])
+    # queryset = Products.objects.raw('SELECT * FROM store_products')
+    # with connection.cursor() as cursor:
+    #     cursor.execute('SELECT title FROM store_products')
+    #     cursor.callproc('get_customer', [1,3,6])
+
+    try:
+        send_mail('subject demo', 'mesage demo',
+                  'support@davebuy.com', ['ceo@davebuy.com'])
+        mail_admins('subject admin', 'message Admin', html_message='message admin')
+        message = BaseEmailMessage(
+            template_name= 'emails/hello.html',
+            context= {'name': 'Umoh'}
+        )
+        message.attach_file('playground/static/images/1.jpg')
+        message.send(['deactivation@davebuy.com'])
+    except BadHeaderError:
+        pass
 
 
+    # return render(request, 'hello.html', {'name': 'Mcdave', 'results': list(queryset)})
+
+    notify_customers.delay('Hello')
+
+    return render(request, 'hello.html', {'name': 'Mcdave'})
 
 
-    return render(request, 'hello.html', {'name': 'Mcdave', 'results': list(queryset)})
+#50 22 qpr 25
+

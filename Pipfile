@@ -10,8 +10,16 @@ djoser = "*"
 djangorestframework-simplejwt = "*"
 social-auth-app-django = "*"
 pillow = "*"
+django-templated-email = "*"
+django-templated-mail = "*"
+redis = "*"
+celery = "*"
+flower = "*"
 
 [dev-packages]
+pytest = "*"
+pytest-watch = "*"
+pytest-django = "*"
 
 [requires]
 python_version = "3.12"

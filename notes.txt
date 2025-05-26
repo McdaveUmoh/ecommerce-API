@@ -44,7 +44,40 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ
 #transactions in Django to treat a bunch of actions as atomic where they all run or dont prevent data loss in the process
 #when your overwrite the get query method on a viewset you have to set a basename in the routers url
 #when including another serializer to a serialzer ensure you indicate if the many is true or not base on how you described your relationship in the database
-#23:16
+#SMTP (Simple Mail Transfer Protocol) you can use fake smtp servers during development like "smtp4dev" and uses port 5000 to view the admin interface
+#sudo docker run --rm -it -p 3000:80 -p 2525:25 rnwood/smtp4dev
+#Docker is a platform for shipping and running software
+#Email Backends in Django SMTP, Console, File, Locmem, Dummy
+#Django-templated-email for sending dynamic emails
+#Celeryproject.org for running background tasks and it can be scheduled to be run periodic tasks i.e like every monday
+#Message brokers are responsible for handling requests/message between apps in a reliable way
+#Popular brokers for django are [redis (in-memory data store) + cache] and rabbitMQ
+#pipenv install redis then use docker to run it in a container "sudo docker run -d -p 6380:6379 redis"
+#sudo docker ps to see the list of services docker is running
+#celery -A  storefront worker --loglevel=info
+#take note we can use docker to run all the terminals simutaneously with docker=compose up
+#pipenv install flower to help monitor task
+#when it comes to automated testing you should sought out to test the behaviour of your code and not each and every implementation of the the code like each view, model, serializer etc.
+# use pytest for testing your applications as ir requires lesser boilerplates as compared to unittest and a better community and plugins  run "pipenv install --dev pytest then install pytest-django"
+#always check to see if your test is checking for the right condition bby commenting out the actual condition required for the test to succeed
+#to skip a test we use @pytest.mark.skip
+#for continous testing we need to install a plugin called pytest-watch in development mode
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#1:22 :16
 
 DATABASES = {
     'default': {

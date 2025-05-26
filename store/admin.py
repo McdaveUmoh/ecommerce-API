@@ -23,7 +23,14 @@ class InventoryFilter(admin.SimpleListFilter):
         elif self.value() == '<50' :
             return queryset.filter(inventory__lt=50)
 
+class ProductImageInline(admin.TabularInline):
+    model = models.ProductImage
+    readonly_fields = ['thumbnail']
 
+    def thumbnail(self, instance):
+        if instance.image.name != '':
+            return format_html(f'<img src="{instance.image.url}" class="thumbnail"/>')
+        return ''
 
 @admin.register(models.Products)
 class ProductAdmin(admin.ModelAdmin):
@@ -36,6 +43,7 @@ class ProductAdmin(admin.ModelAdmin):
     }
     # readonly_fields = ['slug'] #"fields that can't be edited just read only"
     actions = ['clear_inventory']
+    inlines = [ProductImageInline]
     list_display = ['title', 'unit_price', 'inventory_status', 'collection_title']
     list_editable = ['unit_price']
     list_filter = ['collection', 'last_update', InventoryFilter]
@@ -59,6 +67,12 @@ class ProductAdmin(admin.ModelAdmin):
             f'{updated_count} Products were successfully updated',
             messages.SUCCESS
         )
+
+    class Media:
+        css = {
+            'all': ['store/styles.css']
+        }
+
 # class OrderItemInLine(admin.StackedInline):
 class OrderItemInLine(admin.TabularInline):
 
