@@ -61,7 +61,11 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ
 # use pytest for testing your applications as ir requires lesser boilerplates as compared to unittest and a better community and plugins  run "pipenv install --dev pytest then install pytest-django"
 #always check to see if your test is checking for the right condition bby commenting out the actual condition required for the test to succeed
 #to skip a test we use @pytest.mark.skip
-#for continous testing we need to install a plugin called pytest-watch in development mode
+#for continous testing we need to install a plugin called pytest-watch in development mode then use "ptw" to continously test your code for changes
+#pipenv install --dev model-bakery for randomly generating data required based of the data type
+#print statement don't work while writing test except when the tests fail
+#performance testing you can use locust by installing it with pipenv install locust
+# to run a locust script locust -f locustfiles/browseproducts.py
 #
 #
 #
@@ -75,9 +79,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ
 #
 #
 #
-#
-#
-#1:22 :16
+#1:33:22
 
 DATABASES = {
     'default': {

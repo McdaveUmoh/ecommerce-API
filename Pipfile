@@ -15,11 +15,13 @@ django-templated-mail = "*"
 redis = "*"
 celery = "*"
 flower = "*"
+locust = "*"
 
 [dev-packages]
 pytest = "*"
 pytest-watch = "*"
 pytest-django = "*"
+model-bakery = "*"
 
 [requires]
 python_version = "3.12"
